@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<head>
+    <title>Login Form</title>
+</head>
+
+<h1>Login Form</h1>
+<form method="POST">
+    {% if error %}
+    <p>{{error}}</p>
+    {% endif %}
+    Enter your email id : <input type="text" name="email">
+    Enter your password : <input type="password" name="password">
+    <input type="submit" value="login">
+</form>
