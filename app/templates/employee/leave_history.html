@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Leave History</title>
+</head>
+<table>
+    <tr>
+        <th>Leave Type</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Reason</th>
+        <th>Status</th>
+        <th>Creation Date</th>
+    </tr>
+    {% for leave in leaves %}
+    <tr>
+
+        <td>
+            <p>{{leave.leave_type}}</p>
+
+        </td>
+        <td>
+            <p>{{leave.start_date}}</p>
+
+        </td>
+        <td>
+            <p>{{leave.end_date}}</p>
+
+        </td>
+        <td>
+            <p>{{leave.reason}}</p>
+
+        </td>
+        <td>
+            <p>{{leave.status}}</p>
+
+        </td>
+        <td>
+            <p>{{leave.created_at}}</p>
+
+        </td>
+        {% endfor %}
+    </tr>
+</table>

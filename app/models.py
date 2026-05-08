@@ -1,5 +1,6 @@
 from app import db,login_manager
 from flask_login import UserMixin
+from datetime import datetime, timezone
 
 class UserInfo(db.Model,UserMixin):
     id = db.Column(db.Integer, primary_key=True)
@@ -20,6 +21,7 @@ class LeaveInfo(db.Model):
     end_date = db.Column(db.Date)
     status = db.Column(db.String(20))
     reason = db.Column(db.String(300))
+    created_at= db.Column(db.DateTime, default=lambda: datetime.now (timezone.utc))
     
 class Department(db.Model):
     id = db.Column(db.Integer, primary_key=True)

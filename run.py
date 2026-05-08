@@ -8,10 +8,4 @@ app=create_app()
 def Firstflaskfunc():
     return ("<p>First flask function</p>")
 
-@app.route("/leave/apply", methods=['GET','POST'])
-def leaveForm():
-    if request.method=="POST":
-        return ("<p>Form submitted !</p>")
-    else:
-        return render_template("leave_apply.html")
     
