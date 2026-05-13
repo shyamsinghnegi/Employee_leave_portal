@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+
+<head>
+    <title>
+        Leave status
+    </title>
+</head>
+
+<table>
+    <tr>
+        <th>Leave Type</th>
+        <th>Start Date</th>
+        <th>Reason</th>
+        <th>Status</th>
+        <th>Employee ID</th>
+    </tr>
+    {% for leave in leaves %}
+    <tr>
+        <td>
+            <p>{{leave.leave_type}}</p>
+
+        </td>
+        <td>
+            <p>{{leave.start_date}}</p>
+
+        </td>
+        <td>
+            <p>{{leave.reason}}</p>
+
+        </td>
+        <td>
+            <p>{{leave.status}}</p>
+
+        </td>
+        <td>
+            <p>{{leave.user_id}}</p>
+
+        </td>
+        <td>
+            <!-- <Select>
+                <option>
+
+                    <a href="{{url_for('manager.approve_leave', leave_id=leave.id)}}">Approve</a>
+                </option>
+                <option>
+
+                    <a href="{{url_for('manager.reject_leave', leave_id=leave.id)}}">Reject</a>
+                </option>
+            </Select> -->
+            <a href="{{url_for('manager.approve_leave', leave_id=leave.id)}}">Approve</a>
+
+            <a href="{{url_for('manager.reject_leave', leave_id=leave.id)}}">Reject</a>
+
+        </td>
+    </tr>
+    {% endfor %}
+</table>

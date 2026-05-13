@@ -80,6 +80,46 @@
         "documentation": {}
     },
     {
+        "label": "request",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "redirect",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "render_template",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "Blueprint",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "url_for",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
         "label": "current_app",
         "importPath": "flask",
         "description": "flask",
@@ -113,6 +153,22 @@
     },
     {
         "label": "logout_user",
+        "importPath": "flask_login",
+        "description": "flask_login",
+        "isExtraImport": true,
+        "detail": "flask_login",
+        "documentation": {}
+    },
+    {
+        "label": "login_required",
+        "importPath": "flask_login",
+        "description": "flask_login",
+        "isExtraImport": true,
+        "detail": "flask_login",
+        "documentation": {}
+    },
+    {
+        "label": "current_user",
         "importPath": "flask_login",
         "description": "flask_login",
         "isExtraImport": true,
@@ -184,6 +240,14 @@
         "documentation": {}
     },
     {
+        "label": "db",
+        "importPath": "app",
+        "description": "app",
+        "isExtraImport": true,
+        "detail": "app",
+        "documentation": {}
+    },
+    {
         "label": "login_manager",
         "importPath": "app",
         "description": "app",
@@ -201,6 +265,14 @@
     },
     {
         "label": "UserInfo",
+        "importPath": "app.models",
+        "description": "app.models",
+        "isExtraImport": true,
+        "detail": "app.models",
+        "documentation": {}
+    },
+    {
+        "label": "LeaveInfo",
         "importPath": "app.models",
         "description": "app.models",
         "isExtraImport": true,
@@ -376,6 +448,42 @@
         "description": "app.routes.employee",
         "peekOfCode": "employee = Blueprint('employee',__name__)\n@employee.route('/dashboard')\n@login_required\ndef User_dashboard():\n    return (\"<p>dashboard</p>\")\n@employee.route(\"/leave/apply\", methods=['GET','POST'])\n@login_required\ndef leaveForm():\n    if request.method==\"POST\":\n        Leave_type=request.form.get('leave_type')",
         "detail": "app.routes.employee",
+        "documentation": {}
+    },
+    {
+        "label": "Leave_Status",
+        "kind": 2,
+        "importPath": "app.routes.manager",
+        "description": "app.routes.manager",
+        "peekOfCode": "def Leave_Status():\n    leaveinfo=LeaveInfo.query.filter_by(status='pending').all()\n    return render_template('manager/leave_status.html',leaves=leaveinfo)\n@manager.route('/approve_leave/<int:leave_id>')\n@login_required\ndef approve_leave(leave_id):\n    leave=LeaveInfo.query.get(leave_id)\n    leave.status='approved'\n    db.session.commit()\n    return redirect(url_for('manager.Leave_Status'))",
+        "detail": "app.routes.manager",
+        "documentation": {}
+    },
+    {
+        "label": "approve_leave",
+        "kind": 2,
+        "importPath": "app.routes.manager",
+        "description": "app.routes.manager",
+        "peekOfCode": "def approve_leave(leave_id):\n    leave=LeaveInfo.query.get(leave_id)\n    leave.status='approved'\n    db.session.commit()\n    return redirect(url_for('manager.Leave_Status'))\n@manager.route('/reject_leave/<int:leave_id>')\n@login_required\ndef reject_leave(leave_id):\n    leave=LeaveInfo.query.get(leave_id)\n    leave=status = 'rejected'",
+        "detail": "app.routes.manager",
+        "documentation": {}
+    },
+    {
+        "label": "reject_leave",
+        "kind": 2,
+        "importPath": "app.routes.manager",
+        "description": "app.routes.manager",
+        "peekOfCode": "def reject_leave(leave_id):\n    leave=LeaveInfo.query.get(leave_id)\n    leave=status = 'rejected'\n    db.session.commit()\n    return redirect(url_for('manager.Leave_Status'))",
+        "detail": "app.routes.manager",
+        "documentation": {}
+    },
+    {
+        "label": "manager",
+        "kind": 5,
+        "importPath": "app.routes.manager",
+        "description": "app.routes.manager",
+        "peekOfCode": "manager = Blueprint('manager', __name__)\n@manager.route('/leaves')\n@login_required\ndef Leave_Status():\n    leaveinfo=LeaveInfo.query.filter_by(status='pending').all()\n    return render_template('manager/leave_status.html',leaves=leaveinfo)\n@manager.route('/approve_leave/<int:leave_id>')\n@login_required\ndef approve_leave(leave_id):\n    leave=LeaveInfo.query.get(leave_id)",
+        "detail": "app.routes.manager",
         "documentation": {}
     },
     {
